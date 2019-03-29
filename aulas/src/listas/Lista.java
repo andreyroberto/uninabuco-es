@@ -62,7 +62,7 @@ public class Lista {
             //se for a ultima posicao
             }else if(posicao == this.getAmount()){
                 //for para encontrar o penultimo no
-		        for(; current.getNext() != this.tail;){
+                for(; current.getNext() != this.tail;){
                     current = current.getNext();
                 }
                 no.setNext(current.getNext());
