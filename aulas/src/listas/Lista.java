@@ -81,6 +81,93 @@ public class Lista {
         }
     }
 	
+    //remover
+    public void remove(int valor){
+        NoLista current = this.head;
+
+        if(!this.estaVazia()){
+            do{
+                if(current.getValor() == valor){
+                    break;
+                }else{
+                    current = current.getNext();
+                }
+            }while(current != null);
+
+            	//se o valor a ser removido estiver na lista
+            if(current != null){
+                //se a lista so tiver um elemento
+                if(current == this.tail && current == this.head){
+                    this.head = this.tail = null;
+                //se o elemento for o primeiro
+                }else if(current == this.head){
+                    this.head = this.head.getNext();
+                //se o elemento for o ultimo
+                }else if(current == this.tail){
+                    current = this.head;
+                    for(; current.getNext() != this.tail;){
+                        current = current.getNext();
+                    }
+                    current.setNext(null);
+                    this.setTail(current);
+                //se o elemento tiver no meio da lista
+                }else{
+                    NoLista temp = head;
+
+                    for(; temp.getNext() != current;){
+                        temp = temp.getNext();
+                    }
+                    temp.setNext(current.getNext());
+                }
+                this.amount--;
+            }
+        }
+    }
+
+    //remover no em posição especifica
+    public void removePosicao(int posicao){
+        NoLista current = this.head;
+
+        //verifica se posicao existe
+        if(!this.estaVazia() && posicao>0 && posicao<=this.getAmount()){
+            if(posicao == 1){
+                this.head = current.getNext();
+                current.setNext(null);
+            }else if(posicao == this.getAmount()){
+                for(; current.getNext() != this.tail;){
+                    current = current.getNext();
+                }
+                this.tail = current;
+                current.setNext(null);
+            }else{
+                for(int i=1; i<=posicao; i++){
+                    if(posicao-1 == i){
+                        current.setNext(current.getNext().getNext());
+                    }else{
+                        current = current.getNext();
+                    }
+                }
+            }
+            this.amount--;
+        }
+    }
+
+    //remover todas as ocorrencias de um no
+    public void removeAll(int valor){
+        NoLista current = this.head;
+        int temp = this.getAmount();
+
+        if(!this.estaVazia()){
+            for(int i=1; i<=temp; i++){
+                if(current.getValor() == valor){
+                    this.remove(valor);
+                }else{
+                    current = current.getNext();
+                }
+            }
+        }
+    }
+
     //printar lista
     public void print(){
         NoLista current = this.head;
