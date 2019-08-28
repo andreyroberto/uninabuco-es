@@ -27,7 +27,7 @@ public class Elevador{
 		return inicializado;
 	}
 
-  //metodos
+  //metodos da classe
 	public void inicializa(int capacidade, int totalAndares){
 		if(this.inicializado == false){
 			this.capacidade = capacidade;
